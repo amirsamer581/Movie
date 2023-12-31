@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.signin.ui.signup.SignUpFragment"
+        android:name="com.example.signin.ui.signup.ui.SignUpFragment"
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
         <action

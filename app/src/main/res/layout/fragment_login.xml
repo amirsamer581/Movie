@@ -9,7 +9,7 @@
         android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:layout_marginBottom="8dp" />
 
@@ -19,21 +19,22 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/emailEditText"
         android:layout_marginBottom="16dp"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:minHeight="48dp" />
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/passwordEditText"
-        android:text="Login" />
+        android:text="@string/login" />
+
     <Button
         android:id="@+id/signUpButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
         android:layout_below="@id/loginButton"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:text="@string/sign_up" />
 </RelativeLayout>

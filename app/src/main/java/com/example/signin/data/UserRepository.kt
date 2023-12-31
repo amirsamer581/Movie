@@ -1,12 +1,10 @@
 package com.example.signin.data
 
+import com.example.signin.data.models.UserEntity
 
 class UserRepository(private val userDao: UserDao) {
-     fun insertUser(user: UserEntity) {
-        userDao.insertUser(user)
-    }
+    suspend fun insertUser(user: UserEntity) = userDao.insertUser(user)
 
-     fun getUserByEmailAndPassword(email: String, password: String): UserEntity? {
-        return userDao.getUserByEmailAndPassword(email, password)
-    }
+    suspend fun getUserByEmailAndPassword(email: String, password: String): UserEntity? = userDao.getUserByEmailAndPassword(email, password)
+//    //TODO susoend
 }
