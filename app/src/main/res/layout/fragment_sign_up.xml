@@ -60,5 +60,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
-        android:layout_below="@id/dateOfBirthEditText"/>
+        android:layout_below="@id/dateOfBirthEditText"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.signin.R
 import com.example.signin.data.AppDatabase
@@ -14,6 +15,7 @@ import com.example.signin.databinding.FragmentLoginBinding
 import com.example.signin.ui.login.commonfeatures.LogInSnackBar
 import com.example.signin.viewmodel.LogInViewModel
 import com.example.signin.viewmodel.LogInViewModelFactory
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
@@ -47,15 +49,16 @@ class LoginFragment : Fragment() {
                 snackBar.allFields(requireView(),"Please fill all the fields")
             }
         }
-        viewModel.loggedInUser.observe(viewLifecycleOwner) { user ->
-            if (user != null) {
-                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                snackBar.showSuccess(requireView(),"Login successful")
-            } else {
-                snackBar.showError(requireView(),"Invalid email or password!")
+        lifecycleScope.launch {
+            viewModel.loggedInUser.collect { user ->
+                if (user != null) {
+                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    snackBar.showSuccess(requireView(), "Login successful")
+                } else {
+                    snackBar.showError(requireView(), "Invalid email or password!")
+                }
             }
         }
-
         binding.signUpButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }

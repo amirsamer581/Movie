@@ -12,13 +12,14 @@ import com.example.signin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController: NavController = navHostFragment.navController
+        navController = navHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(navController.graph)
 
         setSupportActionBar(binding.toolbar)
@@ -27,6 +28,16 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp() || super.onSupportNavigateUp()
-        //TODO
+        //TODO under stand the navigation component
+        //TODO use the clean architecture
+    }
+    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        if (navController.currentDestination?.id == R.id.homeFragment) {
+            navController.navigate(R.id.action_homeFragment_to_loginFragment)
+        } else {
+            super.onBackPressed()
+        }
     }
 }

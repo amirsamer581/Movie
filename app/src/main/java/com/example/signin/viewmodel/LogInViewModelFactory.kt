@@ -14,7 +14,8 @@ class LogInViewModelFactory(private val userRepository: UserRepository) :
         } else{
             SignUpViewModel(userRepository) as T
         }
-//        throw IllegalArgumentException("Unknown ViewModel class")
+        @Suppress("UNREACHABLE_CODE")
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
 

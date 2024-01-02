@@ -18,4 +18,4 @@ data class UserEntity(
     val password: String,
     @ColumnInfo(name = "dateOfBirth")
     val dateOfBirth: String
-)
+)//TODO make the email also as primary key
