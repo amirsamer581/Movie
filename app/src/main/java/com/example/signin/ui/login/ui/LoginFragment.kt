@@ -9,19 +9,15 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.signin.R
 import com.example.signin.data.UserRepository
-import com.example.signin.data.local.AppDatabase
 import com.example.signin.databinding.FragmentLoginBinding
 import com.example.signin.ui.login.commonfeatures.LogInSnackBar
 import com.example.signin.ui.login.viewmodel.LogInViewModel
 import com.example.signin.viewmodel.ViewModelFactory
+import com.example.signin.app.DependencyInjectionContainer
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
-    private val userRepository: UserRepository by lazy {
-        UserRepository(
-            AppDatabase.getInstance(requireContext()).userDao()
-        )
-    }
+    private val userRepository: UserRepository = DependencyInjectionContainer.provideUserRepository()
     private val logInViewModel: LogInViewModel by viewModels { ViewModelFactory(userRepository) }
     private lateinit var snackBar: LogInSnackBar
     override fun onCreateView(

@@ -9,19 +9,15 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.signin.R
 import com.example.signin.data.UserRepository
-import com.example.signin.data.local.AppDatabase
 import com.example.signin.databinding.FragmentSignUpBinding
 import com.example.signin.domain.UserEntity
 import com.example.signin.ui.signup.commonfeatures.SignUpSnackBar
 import com.example.signin.ui.signup.viewmodel.SignUpViewModel
 import com.example.signin.viewmodel.ViewModelFactory
+import com.example.signin.app.DependencyInjectionContainer
 
 class SignUpFragment : Fragment() {
-    private val userRepository: UserRepository by lazy {
-        UserRepository(
-            AppDatabase.getInstance(requireContext()).userDao()
-        )
-    }
+    private val userRepository: UserRepository = DependencyInjectionContainer.provideUserRepository()
     private val signUpViewModel: SignUpViewModel by viewModels { ViewModelFactory(userRepository) }
     private lateinit var snackBar: SignUpSnackBar
     private lateinit var binding: FragmentSignUpBinding

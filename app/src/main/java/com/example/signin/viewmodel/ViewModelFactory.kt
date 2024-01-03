@@ -5,7 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.signin.data.UserRepository
 import com.example.signin.ui.login.viewmodel.LogInViewModel
 import com.example.signin.ui.signup.viewmodel.SignUpViewModel
-class ViewModelFactory(private val userRepository: UserRepository) :
+import com.example.signin.app.DependencyInjectionContainer
+
+class ViewModelFactory(
+    private val userRepository: UserRepository = DependencyInjectionContainer.provideUserRepository()
+) :
     ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
