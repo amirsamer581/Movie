@@ -1,10 +1,10 @@
-package com.example.signin.data
+package com.example.signin.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.signin.data.models.UserEntity
+import com.example.signin.domain.UserEntity
 
 @Database(entities = [UserEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
@@ -25,4 +25,4 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
     }
-}//TODO under stand what is the data base
+}

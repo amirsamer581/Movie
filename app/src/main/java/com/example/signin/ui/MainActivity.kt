@@ -28,16 +28,5 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp() || super.onSupportNavigateUp()
-        //TODO under stand the navigation component
-        //TODO use the clean architecture
-    }
-    @Suppress("DEPRECATION")
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        if (navController.currentDestination?.id == R.id.homeFragment) {
-            navController.navigate(R.id.action_homeFragment_to_loginFragment)
-        } else {
-            super.onBackPressed()
-        }
     }
 }

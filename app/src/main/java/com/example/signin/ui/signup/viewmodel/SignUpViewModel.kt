@@ -1,9 +1,9 @@
-package com.example.signin.viewmodel
+package com.example.signin.ui.signup.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.signin.data.UserRepository
-import com.example.signin.data.models.UserEntity
+import com.example.signin.domain.UserEntity
 import kotlinx.coroutines.launch
 
 class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() {

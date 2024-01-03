@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.signin.R
-import com.example.signin.data.AppDatabase
 import com.example.signin.data.UserRepository
-import com.example.signin.data.models.UserEntity
+import com.example.signin.data.local.AppDatabase
 import com.example.signin.databinding.FragmentSignUpBinding
+import com.example.signin.domain.UserEntity
 import com.example.signin.ui.signup.commonfeatures.SignUpSnackBar
-import com.example.signin.viewmodel.LogInViewModelFactory
-import com.example.signin.viewmodel.SignUpViewModel
+import com.example.signin.ui.signup.viewmodel.SignUpViewModel
+import com.example.signin.viewmodel.ViewModelFactory
 
 class SignUpFragment : Fragment() {
     private val userRepository: UserRepository by lazy {
@@ -22,7 +22,7 @@ class SignUpFragment : Fragment() {
             AppDatabase.getInstance(requireContext()).userDao()
         )
     }
-    private val viewModel: SignUpViewModel by viewModels { LogInViewModelFactory(userRepository) }
+    private val signUpViewModel: SignUpViewModel by viewModels { ViewModelFactory(userRepository) }
     private lateinit var snackBar: SignUpSnackBar
     private lateinit var binding: FragmentSignUpBinding
     override fun onCreateView(
@@ -55,7 +55,7 @@ class SignUpFragment : Fragment() {
                     password = password,
                     dateOfBirth = dateOfBirth
                 )
-                viewModel.registerUser(user)
+                signUpViewModel.registerUser(user)
                 findNavController().navigate(R.id.action_signUpFragment_to_homeFragment)
                 snackBar.showSuccess(requireView(),"Sign up successful")
             } else {

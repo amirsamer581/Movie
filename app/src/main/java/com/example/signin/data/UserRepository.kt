@@ -1,9 +1,9 @@
 package com.example.signin.data
 
-import com.example.signin.data.models.UserEntity
-import kotlinx.coroutines.flow.Flow
-
+import androidx.lifecycle.LiveData
+import com.example.signin.data.local.UserDao
+import com.example.signin.domain.UserEntity
 class UserRepository(private val userDao: UserDao) {
     suspend fun insertUser(user: UserEntity) = userDao.insertUser(user)
- fun getUserByEmailAndPassword(email: String, password: String): Flow<UserEntity?> = userDao.getUserByEmailAndPassword(email, password)
+    fun getUserByEmailAndPassword(email: String, password: String): LiveData<UserEntity?> = userDao.getUserByEmailAndPassword(email, password)
 }

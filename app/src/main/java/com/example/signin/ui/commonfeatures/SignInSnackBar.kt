@@ -1,4 +1,4 @@
-package com.example.signin.commonfeatures
+package com.example.signin.ui.commonfeatures
 
 import android.view.View
 

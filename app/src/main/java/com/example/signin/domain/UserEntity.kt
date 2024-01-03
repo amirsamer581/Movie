@@ -1,4 +1,4 @@
-package com.example.signin.data.models
+package com.example.signin.domain
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -18,4 +18,4 @@ data class UserEntity(
     val password: String,
     @ColumnInfo(name = "dateOfBirth")
     val dateOfBirth: String
-)//TODO make the email also as primary key
+)
