@@ -1,4 +1,4 @@
-package com.example.signin.ui.signup.commonfeatures
+package com.example.signin.ui.signup.ui.commonfeatures
 
 import android.content.res.ColorStateList
 import android.view.View
