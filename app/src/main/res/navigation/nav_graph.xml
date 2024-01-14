@@ -27,15 +27,44 @@
             android:id="@+id/action_signUpFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.signin.ui.home.HomeFragment"
+        android:name="com.example.signin.ui.home.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@+id/loginFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/actionFragment"
+        android:name="com.example.signin.ui.home.ui.ActionFragment"
+        android:label="fragment_action"
+        tools:layout="@layout/fragment_action" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/comedyFragment"
+        android:name="com.example.signin.ui.home.ui.ComedyFragment"
+        android:label="fragment_comedy"
+        tools:layout="@layout/fragment_comedy" />
+
+    <fragment
+        android:id="@+id/adventureFragment"
+        android:name="com.example.signin.ui.home.ui.AdventureFragment"
+        android:label="fragment_adventure"
+        tools:layout="@layout/fragment_adventure" />
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.example.signin.ui.moviedetail.ui.MovieDetailFragment"
+        android:label="fragment_image_detail"
+        tools:layout="@layout/fragment_movie_detail">
     </fragment>
 
 </navigation>

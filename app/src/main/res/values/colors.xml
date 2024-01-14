@@ -5,4 +5,5 @@
     <color name="red">#EF0707</color>
     <color name="green">#0FE80F</color>
     <color name="blue">#2A41D0</color>
+    <color name="invisible">#00FBFAFA</color>
 </resources>

@@ -13,4 +13,4 @@ interface UserDao {
     suspend fun insertUser(user: UserEntity)
     @Query("SELECT * FROM users WHERE email = :email AND password = :password")
     fun getUserByEmailAndPassword(email: String, password: String): Flow<UserEntity?>
-}//TODO what is the usage for live dats and the  flow
+}

@@ -10,8 +10,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.signin.R
 import com.example.signin.data.UserRepository
-import com.example.signin.data.local.AppDatabase
+import com.example.signin.data.local.UserDatabase
 import com.example.signin.databinding.FragmentLoginBinding
+import com.example.signin.domain.UserEntity
 import com.example.signin.ui.login.domain.usecase.LogInUseCase
 import com.example.signin.ui.login.ui.commonfeatures.LogInSnackBar
 import com.example.signin.ui.login.viewmodel.LogInViewModel
@@ -22,7 +23,7 @@ class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val userRepository: UserRepository by lazy {
         UserRepository(
-            AppDatabase.getInstance(requireContext()).userDao()
+            UserDatabase.getInstance(requireContext()).userDao()
         )
     }
     private val loginUseCase: LogInUseCase by lazy {
@@ -42,37 +43,37 @@ class LoginFragment : Fragment() {
 
         snackBar = LogInSnackBar()
 
-//        logInViewModel.loggedInUser.observe(viewLifecycleOwner) { user ->
-//            if (user != null) {
-//                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-//                snackBar.showSuccess(requireView(), "Login successful")
-//            } else {
-//                snackBar.showError(requireView(), "Invalid email or password !")
-//            }
-//        }
-
         viewLifecycleOwner.lifecycleScope.launch {
             logInViewModel.loggedInUser.collect { user ->
                 if (user != null) {
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     snackBar.showSuccess(requireView(), "Login successful")
-                } else {
-                    snackBar.showError(requireView(), "Invalid email or password!")//TODO fix the issue for this message
                 }
             }
         }
 
         binding.loginButton.setOnClickListener {
-            val email = binding.emailEditText.text.toString()
-            val password = binding.passwordEditText.text.toString()
+            val userData = UserEntity(
+                firstName = "",
+                lastName = "",
+                email = binding.emailEditText.text.toString(),
+                password = binding.passwordEditText.text.toString(),
+                dateOfBirth = ""
+            )
 
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                logInViewModel.login(email, password)
+            if (userData.email.isNotEmpty() && userData.password.isNotEmpty()) {
+                logInViewModel.login(userData.email, userData.password)
+                viewLifecycleOwner.lifecycleScope.launch {
+                    logInViewModel.loggedInUser.collect { user ->
+                        if (user == null)
+                            snackBar.showError(requireView(), "Invalid email or password!")
+                    }
+                }
             } else {
-                if (email.isEmpty()) {
+                if (userData.email.isEmpty()) {
                     binding.emailEditText.error = "Please enter your email"
                 }
-                if (password.isEmpty()) {
+                if (userData.password.isEmpty()) {
                     binding.passwordEditText.error = "Please enter your password"
                 }
             }
