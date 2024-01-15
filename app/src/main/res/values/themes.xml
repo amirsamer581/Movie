@@ -1,6 +1,6 @@
 <resources>
     <style name="Base.Theme.SignIn" parent="Theme.Material3.DayNight.NoActionBar">
-
+        <item name="android:background">@color/white</item>
     </style>
 
     <style name="Theme.SignIn" parent="Base.Theme.SignIn" />

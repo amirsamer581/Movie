@@ -1,6 +1,5 @@
 package com.example.signin.ui.home.ui.adapter
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -28,10 +27,8 @@ class MoviesAdapter(private var movies: List<Movie>) :
 
     class MovieViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        @SuppressLint("SetTextI18n")
         fun bind(movie: Movie) {
             binding.apply {
-
                 when (movie.id) {
                   in  1..10 -> {
                       val imageUrl = getMovieImageUrl(movie.id!!)
@@ -39,7 +36,7 @@ class MoviesAdapter(private var movies: List<Movie>) :
                           id = movie.id,
                           movie = movie.movie,
                           rating = movie.rating,
-                          image = null,//loadImage(imageUrl).toString(),
+                          image = imageUrl,
                           imdb_url = movie.imdb_url
                       )
                       loadImage(imageUrl)

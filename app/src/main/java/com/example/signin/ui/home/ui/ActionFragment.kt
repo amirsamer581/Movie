@@ -12,7 +12,7 @@ import com.example.signin.databinding.FragmentActionBinding
 import com.example.signin.ui.home.ui.adapter.MoviesAdapter
 import com.example.signin.ui.home.data.MovieRepository
 import com.example.signin.ui.home.data.local.MovieDatabase
-import com.example.signin.ui.home.domain.RetrofitClient
+import com.example.signin.ui.home.data.RetrofitClient
 import com.example.signin.ui.home.domain.usecase.GetMoviesUseCase
 import com.example.signin.ui.home.ui.viewmodel.MovieViewModel
 import com.example.signin.ui.home.ui.viewmodel.factory.MovieViewModelFactory

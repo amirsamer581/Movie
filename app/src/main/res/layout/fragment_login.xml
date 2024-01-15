@@ -29,7 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/passwordEditText"
         android:text="@string/login"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/light_blue"/>
 
     <Button
         android:id="@+id/signUpButton"
@@ -38,5 +39,6 @@
         android:layout_below="@id/loginButton"
         android:layout_marginTop="16dp"
         android:text="@string/sign_up"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/light_blue"/>
 </RelativeLayout>

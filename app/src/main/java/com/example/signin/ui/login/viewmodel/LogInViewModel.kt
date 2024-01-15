@@ -17,7 +17,7 @@ class LogInViewModel(private val loginUseCase: LogInUseCase) : ViewModel() {
         viewModelScope.launch {
             loginUseCase.execute(email, password).collect { user->
                 _loggedInUser.value = user
-            }//TODO viewModelScope.launch  &&  lifecycle aware
+            }
         }
     }
 }
