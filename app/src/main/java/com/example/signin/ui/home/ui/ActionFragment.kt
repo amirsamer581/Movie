@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 class ActionFragment : Fragment() {
     private lateinit var binding: FragmentActionBinding
     private lateinit var actionMovieAdapter: MoviesAdapter
-    private val viewModel: MovieViewModel by viewModels() //lessImp
+    private val viewModel: MovieViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
