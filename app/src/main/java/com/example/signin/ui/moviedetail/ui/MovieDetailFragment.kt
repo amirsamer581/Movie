@@ -10,7 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.signin.databinding.FragmentMovieDetailBinding
-import com.example.signin.ui.home.domain.Movie
+import com.example.signin.ui.home.domain.model.Movie
+import com.example.signin.constants.SignInConstant.MOVIE_DETAIL
 
 class MovieDetailFragment : Fragment() {
     private lateinit var binding: FragmentMovieDetailBinding
@@ -28,7 +29,7 @@ class MovieDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         @Suppress("DEPRECATION")
-        movie = requireArguments().getParcelable("movie_detail")!!
+        movie = requireArguments().getParcelable(MOVIE_DETAIL)!!
 
         binding.titleTextView1.text = "Movie: ${movie.movie}"
         binding.ratingTextView1.text = "Rating: ${movie.rating.toString()}"
@@ -37,6 +38,8 @@ class MovieDetailFragment : Fragment() {
 
         binding.urlLink1.setOnClickListener {
             val urlIntent = Intent(Intent.ACTION_VIEW, Uri.parse(movie.imdb_url))
+            //Intent.ACTION_VIEW this action is used to open a web page browser or another app to view content
+            //Uri.parse(movie.imdb_url) it is use to converts the movie.imdb_url to Uri object
             binding.root.context.startActivity(urlIntent)
         }
 

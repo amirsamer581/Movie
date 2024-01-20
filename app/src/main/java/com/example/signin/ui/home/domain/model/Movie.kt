@@ -1,4 +1,4 @@
-package com.example.signin.ui.home.domain
+package com.example.signin.ui.home.domain.model
 
 import android.os.Parcelable
 import androidx.room.Entity

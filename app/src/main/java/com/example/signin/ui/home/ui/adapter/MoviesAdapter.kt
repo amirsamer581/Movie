@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.signin.R
 import com.example.signin.databinding.ItemMovieBinding
-import com.example.signin.ui.home.domain.Movie
+import com.example.signin.ui.home.domain.model.Movie
+import com.example.signin.constants.SignInConstant.MOVIE_DETAIL
 
 class MoviesAdapter(private var movies: List<Movie>) :
     RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
@@ -25,7 +26,7 @@ class MoviesAdapter(private var movies: List<Movie>) :
 
     override fun getItemCount(): Int = movies.size
 
-    class MovieViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MovieViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(movie: Movie) {
             binding.apply {
@@ -55,7 +56,7 @@ class MoviesAdapter(private var movies: List<Movie>) :
         private fun setClickListener(movie: Movie) {
             binding.movieImageView.setOnClickListener {
                 val movieDetail = Bundle().apply {
-                    putParcelable("movie_detail", movie)
+                    putParcelable(MOVIE_DETAIL, movie)
                 }
                 binding.root.findNavController().navigate(R.id.action_homeFragment_to_movieDetailFragment, movieDetail)
             }

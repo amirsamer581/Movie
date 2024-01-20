@@ -1,4 +1,4 @@
-package com.example.signin.domain
+package com.example.signin.domain.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

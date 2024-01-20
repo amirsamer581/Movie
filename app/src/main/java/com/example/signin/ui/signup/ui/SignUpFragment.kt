@@ -1,34 +1,24 @@
 package com.example.signin.ui.signup.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.signin.R
-import com.example.signin.data.UserRepository
-import com.example.signin.data.local.UserDatabase
 import com.example.signin.databinding.FragmentSignUpBinding
-import com.example.signin.domain.UserEntity
-import com.example.signin.ui.signup.domain.usecase.SignUpUseCase
+import com.example.signin.domain.model.UserEntity
 import com.example.signin.ui.signup.ui.commonfeatures.SignUpSnackBar
-import com.example.signin.ui.signup.viewmodel.SignUpViewModel
-import com.example.signin.ui.signup.viewmodel.factory.SignUpViewModelFactory
+import com.example.signin.ui.signup.ui.viewmodel.SignUpViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignUpFragment : Fragment() {
-    private val userRepository: UserRepository by lazy {
-        UserRepository(
-            UserDatabase.getInstance(requireContext()).userDao()
-        )
-    }
-    private val signUpUseCase: SignUpUseCase by lazy {
-        SignUpUseCase(userRepository)
-    }
-    private val signUpViewModel: SignUpViewModel by viewModels { SignUpViewModelFactory(signUpUseCase) }
-    private lateinit var snackBar: SignUpSnackBar
     private lateinit var binding: FragmentSignUpBinding
+    private val viewModel : SignUpViewModel by viewModels()
+    private lateinit var snackBar: SignUpSnackBar
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +36,7 @@ class SignUpFragment : Fragment() {
             val user = getUserFromInput()
 
             if (isUserInputValid(user) ) {
-                signUpViewModel.registerUser(user)
+                viewModel.registerUser(user)
                 findNavController().navigate(R.id.action_signUpFragment_to_homeFragment)
                 snackBar.showSuccess(requireView(),"Sign up successful")
             }else {

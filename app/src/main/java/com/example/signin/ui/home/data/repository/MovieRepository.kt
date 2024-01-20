@@ -1,15 +1,18 @@
-package com.example.signin.ui.home.data
+package com.example.signin.ui.home.data.repository
 
 import com.example.signin.ui.home.data.local.MovieDao
-import com.example.signin.ui.home.domain.Movie
+import com.example.signin.ui.home.data.remote.MovieApiService
+import com.example.signin.ui.home.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MovieRepository(
+@Singleton
+class MovieRepository @Inject constructor(
     private val movieApiService: MovieApiService,
     private val movieDao: MovieDao
 ) {
-
 
     suspend fun getMovies(): Flow<List<Movie>> = flow {
         val localMovies = movieDao.getAllMovies()
