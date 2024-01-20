@@ -1,37 +1,25 @@
 package com.example.signin.ui.home.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.signin.databinding.FragmentActionBinding
 import com.example.signin.ui.home.ui.adapter.MoviesAdapter
-import com.example.signin.ui.home.data.MovieRepository
-import com.example.signin.ui.home.data.local.MovieDatabase
-import com.example.signin.ui.home.data.RetrofitClient
-import com.example.signin.ui.home.domain.usecase.GetMoviesUseCase
 import com.example.signin.ui.home.ui.viewmodel.MovieViewModel
-import com.example.signin.ui.home.ui.viewmodel.factory.MovieViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ActionFragment : Fragment() {
     private lateinit var binding: FragmentActionBinding
     private lateinit var actionMovieAdapter: MoviesAdapter
-    private lateinit var viewModel: MovieViewModel
-    private val getMoviesUseCase by lazy {
-        GetMoviesUseCase(
-            movieRepository = MovieRepository(
-                RetrofitClient.movieApiService,
-                movieDao = MovieDatabase.getDatabase(requireContext()).movieDao()
-            )
-        ) }
-    private val viewModelFactory by lazy {
-        MovieViewModelFactory(getMoviesUseCase)
-    }
+    private val viewModel: MovieViewModel by viewModels() //lessImp
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,9 +30,10 @@ class ActionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this, viewModelFactory)[MovieViewModel::class.java]
+        actionMovieAdapter = MoviesAdapter(emptyList())
 
-        viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+            //the lifecycleScope stop when move to other screen
             viewModel.movies.collect { movies ->
                 actionMovieAdapter = MoviesAdapter(movies)
                 binding.actionMoviesRecyclerView.adapter = actionMovieAdapter

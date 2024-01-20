@@ -9,6 +9,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.signin.R
 import com.example.signin.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
+
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
