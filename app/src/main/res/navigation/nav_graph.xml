@@ -39,20 +39,20 @@
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:popUpTo="@+id/loginFragment" />
+            app:popUpTo="@id/loginFragment"/>
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment2"
+            app:destination="@id/loginFragment"/>
         <action
             android:id="@+id/action_homeFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_loginFragment2"
-            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/actionFragment"
         android:name="com.example.signin.ui.home.ui.ActionFragment"
         android:label="fragment_action"
-        tools:layout="@layout/fragment_action" >
+        tools:layout="@layout/fragment_action">
     </fragment>
 
     <fragment

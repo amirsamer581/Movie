@@ -7,6 +7,7 @@ import com.example.signin.R
 import com.example.signin.ui.commonfeatures.SignInSnackBar
 import com.google.android.material.snackbar.Snackbar
 
+
 class LogInSnackBar : SignInSnackBar {
 
     override fun showSuccess(view: View, message: String) {

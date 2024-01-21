@@ -16,8 +16,6 @@ import javax.inject.Singleton
 // the SingletonComponent lives as the application live and the ActivityComponent will live as long the activity screen live
 object RetrofitModule {  //RetrofitModule
 
-    //private const val BASE_URL = "https://dummyapi.online/api/"
-
      private val movieApiService: MovieApiService by lazy { //lazy will not be intilaized by the way it will be intilaized when we access the api
         Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -27,7 +25,7 @@ object RetrofitModule {  //RetrofitModule
     }
 
 
-    @Provides
+    @Provides // @Provides annotation means to till the dagger hilt this function provide dependency injection
     @Singleton //@Singleton means that if have tow repository it will create one instance of provideMovieApiService
     fun provideMovieApiService() : MovieApiService {
         return movieApiService

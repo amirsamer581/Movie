@@ -29,7 +29,7 @@ class MoviesAdapter(private var movies: List<Movie>) :
     inner class MovieViewHolder(private val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(movie: Movie) {
-            binding.apply {
+            binding.apply {//apply it super helpful to modify objects to use without creating variable
                 when (movie.id) {
                   in  1..10 -> {
                       val imageUrl = getMovieImageUrl(movie.id!!)

@@ -5,16 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.signin.R
+import com.example.signin.constants.SignInConstant.ACTION_MOVIE
+import com.example.signin.constants.SignInConstant.ADVENTURE_MOVIE
+import com.example.signin.constants.SignInConstant.COMEDY_MOVIE
 import com.example.signin.databinding.FragmentHomeBinding
 import com.example.signin.ui.home.ui.adapter.MoviePagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -27,6 +27,7 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -35,16 +36,16 @@ class HomeFragment : Fragment() {
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
             when (position) {
-                0 -> tab.text = "Action Movie"
-                1 -> tab.text = "Comedy Movie"
-                2 -> tab.text = "Adventure Movie"
+                0 -> tab.text = ACTION_MOVIE
+                1 -> tab.text = COMEDY_MOVIE
+                2 -> tab.text = ADVENTURE_MOVIE
             }
         }.attach()
 
         binding.btnLogOut.setOnClickListener {
             binding.root.findNavController().navigate(R.id.action_homeFragment_to_loginFragment2)
         }
-
+        //todo find a solution for the back button from the home fragment to the login fragment
     }
 
     override fun onDestroy() {

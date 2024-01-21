@@ -9,6 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.signin.R
+import com.example.signin.constants.SignInConstant.ENTER_EMAIL
+import com.example.signin.constants.SignInConstant.ENTER_PASSWORD
+import com.example.signin.constants.SignInConstant.INVALID_USER
+import com.example.signin.constants.SignInConstant.LOG_IN_SUCCESSFUL
 import com.example.signin.databinding.FragmentLoginBinding
 import com.example.signin.domain.model.UserEntity
 import com.example.signin.ui.login.ui.commonfeatures.LogInSnackBar
@@ -21,9 +25,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var snackBar: LogInSnackBar
     private val viewModel : LogInViewModel by viewModels()
-
+    private lateinit var snackBar: LogInSnackBar
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,9 +41,9 @@ class LoginFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             viewModel.loggedInUser.collect { user ->
-                if (user != null) {// make it user!!.email and user!!.email try this solution
+                if (user != null) {//todo make it user!!.email and user!!.password try this solution
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                    snackBar.showSuccess(requireView(), "Login successful")
+                    snackBar.showSuccess(requireView(), LOG_IN_SUCCESSFUL)
                 }
             }
         }
@@ -59,15 +62,15 @@ class LoginFragment : Fragment() {
                 viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
                     viewModel.loggedInUser.collect { user ->
                         if (user == null)
-                            snackBar.showError(requireView(), "Invalid email or password!")
+                            snackBar.showError(requireView(), INVALID_USER)
                     }
                 }
             } else {
                 if (userData.email.isEmpty()) {
-                    binding.emailEditText.error = "Please enter your email"
+                    binding.emailEditText.error = ENTER_EMAIL
                 }
                 if (userData.password.isEmpty()) {
-                    binding.passwordEditText.error = "Please enter your password"
+                    binding.passwordEditText.error = ENTER_PASSWORD
                 }
             }
         }

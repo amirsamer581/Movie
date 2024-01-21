@@ -8,6 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.signin.R
+import com.example.signin.constants.SignInConstant.DATE_OF_BIRTH
+import com.example.signin.constants.SignInConstant.ENTER_EMAIL
+import com.example.signin.constants.SignInConstant.ENTER_PASSWORD
+import com.example.signin.constants.SignInConstant.FIRST_NAME
+import com.example.signin.constants.SignInConstant.LAST_NAME
+import com.example.signin.constants.SignInConstant.SIGN_UP_SUCCESSFUL
 import com.example.signin.databinding.FragmentSignUpBinding
 import com.example.signin.domain.model.UserEntity
 import com.example.signin.ui.signup.ui.commonfeatures.SignUpSnackBar
@@ -38,7 +44,7 @@ class SignUpFragment : Fragment() {
             if (isUserInputValid(user) ) {
                 viewModel.registerUser(user)
                 findNavController().navigate(R.id.action_signUpFragment_to_homeFragment)
-                snackBar.showSuccess(requireView(),"Sign up successful")
+                snackBar.showSuccess(requireView(),SIGN_UP_SUCCESSFUL)
             }else {
                 showInputErrors(user)
             }
@@ -62,19 +68,19 @@ class SignUpFragment : Fragment() {
 
     private fun showInputErrors(user: UserEntity) {
         if (user.firstName.isEmpty()) {
-            binding.firstNameEditText.error = "Please enter your first name"
+            binding.firstNameEditText.error = FIRST_NAME
         }
         if (user.lastName.isEmpty()) {
-            binding.lastNameEditText.error = "Please enter your last name"
+            binding.lastNameEditText.error = LAST_NAME
         }
         if (user.email.isEmpty()) {
-            binding.emailEditTextSignUp.error = "Please enter your email"
+            binding.emailEditTextSignUp.error = ENTER_EMAIL
         }
         if (user.password.isEmpty()) {
-            binding.passwordEditTextSignUp.error = "Please enter your password"
+            binding.passwordEditTextSignUp.error = ENTER_PASSWORD
         }
         if (user.dateOfBirth.isEmpty()) {
-            binding.dateOfBirthEditText.error = "Please enter your date of birth"
+            binding.dateOfBirthEditText.error = DATE_OF_BIRTH
         }
     }
 }
