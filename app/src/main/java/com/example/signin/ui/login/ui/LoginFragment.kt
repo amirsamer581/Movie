@@ -20,7 +20,7 @@ import com.example.signin.ui.login.ui.viewmodel.LogInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
