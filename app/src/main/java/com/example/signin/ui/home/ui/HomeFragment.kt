@@ -1,5 +1,6 @@
 package com.example.signin.ui.home.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -43,13 +44,7 @@ class HomeFragment : Fragment() {
         }.attach()
 
         binding.btnLogOut.setOnClickListener {
-            binding.root.findNavController().navigate(R.id.action_homeFragment_to_loginFragment2)
+            binding.root.findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
         }
-        //todo find a solution for the back button from the home fragment to the login fragment
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
     }
 }
