@@ -9,8 +9,18 @@ import com.bumptech.glide.Glide
 import com.example.signin.R
 import com.example.signin.databinding.ItemMovieBinding
 import com.example.signin.ui.home.domain.model.Movie
-import com.example.signin.constants.SignInConstant.MOVIE_DETAIL
+import com.example.signin.constants.KeyConstant.MOVIE_DETAIL
 
+/**
+ * [MoviesAdapter] is a RecyclerView Adapter that displays a list of [Movie] items.
+ *
+ * This adapter is responsible for:
+ * - Creating [MovieViewHolder] instances to hold and display movie data.
+ * - Binding movie data to the corresponding view holders.
+ * - Handling clicks on movie items to navigate to the movie detail screen.
+ *
+ * @property movies The list of [Movie] objects to be displayed.
+ */
 class MoviesAdapter(private var movies: List<Movie>) :
     RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
@@ -30,7 +40,7 @@ class MoviesAdapter(private var movies: List<Movie>) :
 
         fun bind(movie: Movie) {
             binding.apply {//apply it super helpful to modify objects to use without creating variable
-                when (movie.id) {
+                when (movie.id!!) {
                   in  1..10 -> {
                       val imageUrl = getMovieImageUrl(movie.id!!)
                       val movieDetail = Movie(

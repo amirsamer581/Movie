@@ -12,7 +12,7 @@ abstract class MovieDatabase : RoomDatabase() {
 
     companion object {
         //why i need a companion object because it is a singleton class to have only one INSTANCE for this class
-        @Volatile //this @Volatile mean the database will be visible to the other treads
+        @Volatile //this @Volatile mean that the write to this database will be visible to the other treads
         private var INSTANCE: MovieDatabase? = null
 
         fun getDatabase(context: Context): MovieDatabase {

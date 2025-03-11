@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "335971505271",
+    "project_id": "signin-dc326",
+    "storage_bucket": "signin-dc326.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335971505271:android:d7251e987342ba9bfbe272",
+        "android_client_info": {
+          "package_name": "com.example.signin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKH6pFX-u-VBJyapBAlPAH8DzIYsKWe78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,13 +11,22 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
+// @HiltViewModel will make models to be
+// created using Hilt's model factory
+// @Inject annotation used to inject all
+// dependencies to view model class
 @HiltViewModel
 class MovieViewModel @Inject constructor(private val getMoviesUseCase: GetMoviesUseCase) : ViewModel() {
+
+    init {
+        fetchData()
+    }
 
     private val _movies = MutableStateFlow<List<Movie>>(emptyList())
     val movies: StateFlow<List<Movie>> get() = _movies
 
-    fun fetchData() {
+    private fun fetchData() {
         viewModelScope.launch(Dispatchers.IO) {
             getMoviesUseCase.invoke().collect { moviesList ->
                 _movies.value = moviesList

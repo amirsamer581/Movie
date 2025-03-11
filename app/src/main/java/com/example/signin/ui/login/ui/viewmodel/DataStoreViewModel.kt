@@ -5,31 +5,61 @@ import androidx.lifecycle.viewModelScope
 import com.example.signin.ui.login.domain.usecase.DataStoreUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
+
+// @HiltViewModel will make models to be
+// created using Hilt's model factory
+// @Inject annotation used to inject all
+// dependencies to view model class
 @HiltViewModel
 class DataStoreViewModel @Inject constructor(
     private val dataStoreUseCase: DataStoreUseCase
 ) : ViewModel() {
 
-    fun saveEmail(value: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            dataStoreUseCase.saveEmail( value)
-        }
-    }
-    suspend fun getEmail(): String? {
-        return dataStoreUseCase.getEmail()
+    private val _emailData = MutableStateFlow<String?>(null)
+    val emailData: StateFlow<String?> get() = _emailData
+
+    private val _passwordData = MutableStateFlow<String?>(null)
+    val passwordData: StateFlow<String?> get() = _passwordData
+
+    init {
+        getEmail()
+        getPassword()
     }
 
+    fun saveEmail(value: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            dataStoreUseCase.saveEmail(value)
+        }
+    }
 
     fun savePassword(value: String) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreUseCase.savePassword(value)
         }
     }
-    fun getPassword(): String? = runBlocking {
-        dataStoreUseCase.getPassword()
+
+    private fun getEmail(){
+        viewModelScope.launch(Dispatchers.IO){
+            dataStoreUseCase.getEmail().collect{ email ->
+                _emailData.value = email.toString()
+            }
+        }
     }
+
+    private fun getPassword(){
+        viewModelScope.launch(Dispatchers.IO){
+            dataStoreUseCase.getPassword().collect{ password ->
+                _passwordData.value = password.toString()
+            }
+        }
+    }
+
+//    val emailFlow: Flow<String?> = dataStoreUseCase.getEmail()
+//
+//    val passwordFlow: Flow<String?> = dataStoreUseCase.getPassword()
 }

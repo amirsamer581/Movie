@@ -15,6 +15,20 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * AdventureFragment
+ *
+ * This Fragment displays a list of action movies fetched from the [MovieViewModel].
+ * It utilizes a RecyclerView to present the movies and observes changes to the
+ * movie data through the ViewModel's `movies` LiveData.
+ *
+ * Features:
+ * - Displays a list of action movies.
+ * - Uses a RecyclerView for efficient movie list rendering.
+ * - Fetches movie data from [MovieViewModel].
+ * - Updates the UI when new movie data is available.
+ * - Uses Hilt for dependency injection.
+ */
 @AndroidEntryPoint
 class AdventureFragment : Fragment() {
     private lateinit var binding: FragmentAdventureBinding
@@ -31,22 +45,23 @@ class AdventureFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         adventureMovieAdapter = MoviesAdapter(emptyList())
+        setupRecyclerView()
+        setupObservers()
+    }
 
+    private fun setupObservers() {
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             viewModel.movies.collect { movies ->
                 adventureMovieAdapter = MoviesAdapter(movies)
                 binding.adventureMoviesRecyclerView.adapter = adventureMovieAdapter
             }
         }
-
-        viewModel.fetchData()
-        setupRecyclerView()
     }
+
     private fun setupRecyclerView() {
         binding.adventureMoviesRecyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = LinearLayoutManager(context)
             adapter = adventureMovieAdapter
         }
     }

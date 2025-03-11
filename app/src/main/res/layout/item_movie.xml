@@ -13,7 +13,7 @@
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
-        android:outlineSpotShadowColor="@color/invisible">
+        android:outlineSpotShadowColor="#118ab2">
 
     <ImageView
         android:id="@+id/movieImageView"

@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_homeFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_importObject"
+            app:destination="@id/importObject" />
     </fragment>
 
     <fragment
@@ -72,5 +75,10 @@
         android:label="fragment_image_detail"
         tools:layout="@layout/fragment_movie_detail">
     </fragment>
+    <fragment
+        android:id="@+id/importObject"
+        android:name="com.example.signin.ui.importobject.ui.ImportObject"
+        android:label="fragment_import_object"
+        tools:layout="@layout/fragment_import_object" />
 
 </navigation>

@@ -12,7 +12,8 @@
         android:layout_marginBottom="8dp"
         android:hint="@string/first_name"
         android:inputType="textPersonName"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:backgroundTint="#bde0fe"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/lastNameEditText"
@@ -22,7 +23,8 @@
         android:layout_marginBottom="8dp"
         android:hint="@string/last_name"
         android:inputType="textPersonName"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:backgroundTint="#bde0fe"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/emailEditText_signUp"
@@ -32,7 +34,8 @@
         android:layout_marginBottom="8dp"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:backgroundTint="#bde0fe"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/passwordEditText_signUp"
@@ -42,7 +45,8 @@
         android:layout_marginBottom="16dp"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:backgroundTint="#bde0fe"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/dateOfBirthEditText"
@@ -53,6 +57,7 @@
         android:hint="@string/date_of_birth"
         android:inputType="date"
         android:minHeight="48dp"
+        android:backgroundTint="#bde0fe"
         tools:ignore="TextContrastCheck" />
 
     <Button
@@ -61,6 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/dateOfBirthEditText"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/light_blue"
+        android:backgroundTint="#118ab2"
+        android:textColor="#d8e2dc"
         android:text="@string/sign_up" />
 </RelativeLayout>

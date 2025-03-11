@@ -12,6 +12,15 @@ import com.example.signin.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 
+/**
+ * The main entry point for the application.
+ *
+ * This activity hosts the navigation graph and manages the top-level navigation using the
+ * Navigation component. It sets up the action bar to work seamlessly with the navigation
+ * controller, allowing for up navigation and proper title management.
+ *
+ * The `@AndroidEntryPoint` annotation is used to enable dependency injection with Hilt.
+ */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

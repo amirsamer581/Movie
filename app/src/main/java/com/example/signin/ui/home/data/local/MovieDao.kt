@@ -6,7 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.signin.ui.home.domain.model.Movie
 
-@Dao
+@Dao // this annotation @Dao mean it is data access object that contain all the method to access the database
 interface MovieDao {
     @Query("SELECT * FROM movies")
     suspend fun getAllMovies(): List<Movie>
