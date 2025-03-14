@@ -11,13 +11,15 @@ class DataStoreUseCase @Inject constructor(private val dataStoreRepository: Data
     suspend fun saveEmail(value: String) {
         dataStoreRepository.saveEmailDataToDataStore(KEY_USER_EMAIL, value)
     }
-     fun getEmail(): Flow<String?> {
-        return dataStoreRepository.loadEmailDataFromDataStore(KEY_USER_EMAIL)
-    }
 
     suspend fun savePassword(value: String) {
         dataStoreRepository.savePasswordDataToDataStore(KEY_USER_PASSWORD, value)
     }
+
+    fun getEmail(): Flow<String?> {
+        return dataStoreRepository.loadEmailDataFromDataStore(KEY_USER_EMAIL)
+    }
+
      fun getPassword(): Flow<String?>  {
         return dataStoreRepository.loadPasswordDataFromDataStore(KEY_USER_PASSWORD)
     }

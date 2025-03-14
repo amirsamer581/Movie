@@ -74,11 +74,4 @@ class DataStoreRepositoryImpl @Inject constructor(
                 preferences[preferencesKey]
             }
     }
-
-//    override fun loadPasswordDataFromDataStore(key: String): Flow<String?> {
-//        val preferencesKey = stringPreferencesKey(key)
-//        return context.dataStore.data.map { preferences ->
-//            preferences[preferencesKey]
-//        }
-//    }
 }

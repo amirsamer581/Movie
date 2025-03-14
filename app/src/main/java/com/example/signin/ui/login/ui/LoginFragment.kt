@@ -94,23 +94,26 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
+            checkEmailAndPassword(email, password)
+        }
+    }
 
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                viewModel.login(email, password)
-                viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
-                    viewModel.loggedInUserStateFlow.collect { user ->
-                        if (user == null) {
-                            snackBar.showError(requireView(), INVALID_USER)
-                        }
+    private fun checkEmailAndPassword(email: String, password: String) {
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            viewModel.login(email, password)
+            viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+                viewModel.loggedInUserStateFlow.collect { user ->
+                    if (user == null) {
+                        snackBar.showError(requireView(), INVALID_USER)
                     }
                 }
-            } else {
-                if (email.isEmpty()) {
-                    binding.emailEditText.error = ENTER_EMAIL
-                }
-                if (password.isEmpty()) {
-                    binding.passwordEditText.error = ENTER_PASSWORD
-                }
+            }
+        } else {
+            if (email.isEmpty()) {
+                binding.emailEditText.error = ENTER_EMAIL
+            }
+            if (password.isEmpty()) {
+                binding.passwordEditText.error = ENTER_PASSWORD
             }
         }
     }

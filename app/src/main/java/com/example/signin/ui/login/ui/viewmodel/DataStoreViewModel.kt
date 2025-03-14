@@ -58,8 +58,4 @@ class DataStoreViewModel @Inject constructor(
             }
         }
     }
-
-//    val emailFlow: Flow<String?> = dataStoreUseCase.getEmail()
-//
-//    val passwordFlow: Flow<String?> = dataStoreUseCase.getPassword()
 }
