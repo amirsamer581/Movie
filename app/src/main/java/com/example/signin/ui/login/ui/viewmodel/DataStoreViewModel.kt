@@ -46,7 +46,7 @@ class DataStoreViewModel @Inject constructor(
     private fun getEmail(){
         viewModelScope.launch(Dispatchers.IO){
             dataStoreUseCase.getEmail().collect{ email ->
-                _emailData.value = email.toString()
+                _emailData.value = email
             }
         }
     }
@@ -54,7 +54,7 @@ class DataStoreViewModel @Inject constructor(
     private fun getPassword(){
         viewModelScope.launch(Dispatchers.IO){
             dataStoreUseCase.getPassword().collect{ password ->
-                _passwordData.value = password.toString()
+                _passwordData.value = password
             }
         }
     }

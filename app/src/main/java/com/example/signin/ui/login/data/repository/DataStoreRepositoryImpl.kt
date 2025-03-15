@@ -60,8 +60,7 @@ class DataStoreRepositoryImpl @Inject constructor(
 
     override fun loadPasswordDataFromDataStore(key: String): Flow<String?> {
         val preferencesKey = stringPreferencesKey(key)
-        return context.dataStore.data
-            .catch { exception ->
+        return context.dataStore.data.catch { exception ->
                 if (exception is IOException) {
                     // Log the exception
                     Log.e("DataStoreRepository", "Error reading preferences(loadPasswordDataFromDataStore)", exception)
@@ -69,8 +68,7 @@ class DataStoreRepositoryImpl @Inject constructor(
                 } else {
                     throw exception
                 }
-            }
-            .map { preferences ->
+            }.map { preferences ->
                 preferences[preferencesKey]
             }
     }
